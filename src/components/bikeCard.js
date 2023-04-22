@@ -14,7 +14,6 @@ const textProps = {
   color: "nayaPedalsColor.midGrey",
   noOfLines: 1,
 };
-
 const textPropsBikeType = {
   fontSize: "lg",
   fontWeight: "semibold",
@@ -26,6 +25,7 @@ const textPropsBikeType = {
 const CustomTextComponent = ({ children }) => (
   <Text {...textProps}>{children}</Text>
 );
+
 export const BikeCard = ({
   image,
   year,
@@ -37,7 +37,7 @@ export const BikeCard = ({
   price,
 }) => {
   return (
-    <Card>
+    <Card variant={"elevated"} size={"sm"}>
       <CardBody>
         <Image src={image} alt={"bikeImg"} borderRadius={4} />
         <Stack spacing={".5rem"}>

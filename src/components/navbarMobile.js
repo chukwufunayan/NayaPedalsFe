@@ -1,17 +1,16 @@
 import React from "react";
 import {
   Flex,
-  Text,
   IconButton,
-  Button,
   Popover,
   PopoverTrigger,
   PopoverContent,
   PopoverBody,
-  Portal,
-  Box,
 } from "@chakra-ui/react";
+
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import { NavLinks } from "./navLinks";
+import { LogoBtn } from "./logoBtn";
 
 const iconBtnProps = {
   color: "white",
@@ -19,19 +18,19 @@ const iconBtnProps = {
   size: "lg",
 };
 
-const logoBtnProps = {
-  color: "white",
-  bg: "transparent",
-  fontFamily: "Intern",
-};
-
-const renderIcon = (isOpen) => (isOpen ? <CloseIcon /> : <HamburgerIcon />);
+const renderIcon = (isOpen) =>
+  isOpen ? <CloseIcon /> : <HamburgerIcon boxSize={6} />;
 
 export const NavbarMobile = ({ links }) => {
   const initRef = React.useRef();
   return (
-    <Flex bg={"transparent"} justifyContent={"space-between"}>
-      <Button {...logoBtnProps}>NayaPedals</Button>
+    <Flex
+      bg={"transparent"}
+      justifyContent={"space-between"}
+      position={"absolute"}
+      width={"100%"}
+    >
+      <LogoBtn />
       <Popover
         closeOnBlur={false}
         placement="bottom-end"
@@ -40,14 +39,11 @@ export const NavbarMobile = ({ links }) => {
         {({ isOpen, onClose }) => (
           <>
             <PopoverTrigger>
-              <IconButton
-                icon={renderIcon(isOpen)}
-                {...iconBtnProps}
-              ></IconButton>
+              <IconButton {...iconBtnProps} icon={renderIcon(isOpen)} />
             </PopoverTrigger>
             <PopoverContent width={"fit-content"}>
               <PopoverBody width={"fit-content"}>
-                <Box>Hello</Box>
+                <NavLinks />
               </PopoverBody>
             </PopoverContent>
           </>
