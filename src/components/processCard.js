@@ -12,11 +12,16 @@ const textPropsBody = {
   fontWeight: "medium",
   color: "nayaPedalsColor.lightGrey",
   fontSize: "xl",
+  textAlign: { base: "center", lg: "start" },
 };
 
 export const ProcessCard = ({ number, description }) => {
   return (
-    <Card bg={"nayaPedalsColor.darkGrey"}>
+    <Card
+      bg={"nayaPedalsColor.darkGrey"}
+      alignItems={{ base: "center", lg: "flex-start" }}
+      maxW={{ lg: "300px" }}
+    >
       <CardHeader paddingBottom={"0rem"}>
         <Circle {...textPropsHeader}>
           <Text>{number}</Text>
@@ -28,5 +33,3 @@ export const ProcessCard = ({ number, description }) => {
     </Card>
   );
 };
-{
-}

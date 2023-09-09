@@ -1,8 +1,11 @@
 // 1. Import `extendTheme`
 import { extendTheme } from "@chakra-ui/react";
+import { theme as proTheme } from "@chakra-ui/pro-theme";
+import { styles } from "./global.theme";
 
 // 2. Call `extendTheme` and pass your custom values
 export const theme = extendTheme({
+  styles,
   colors: {
     nayaPedalsColor: {
       darkGrey: "#313131",
@@ -14,4 +17,5 @@ export const theme = extendTheme({
   fontSizes: {
     xxs: "0.625rem",
   },
+  proTheme,
 });

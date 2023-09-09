@@ -1,26 +1,29 @@
 import { Slide } from "react-slideshow-image";
 import { BikeCard } from "./bikeCard";
+import { SlideshowIndicator } from "./details";
 import "react-slideshow-image/dist/styles.css";
-import { Box, Circle, useBreakpointValue } from "@chakra-ui/react";
+import { Circle, useBreakpointValue, Image } from "@chakra-ui/react";
 
 export const Slideshow = ({ slides }) => {
-  const slidePropValues = useBreakpointValue(
-    {
-      base: { slidesToShow: 1, slidesToScroll: 1 },
-      sm: {
-        slidesToShow: 2,
-        slidesToScroll: 2,
-      },
-
-      xl: {
-        slidesToShow: 4,
-        slidesToScroll: 2,
-      },
+  console.log("inside slideshow: ");
+  const slidePropValues = useBreakpointValue({
+    base: { slidesToShow: 1, slidesToScroll: 1 },
+    md: {
+      slidesToShow: 2,
+      slidesToScroll: 2,
     },
-    { ssr: false }
-  );
-  const indicatorFunction = () => (
+    lg: {
+      slidesToShow: 3,
+      slidesToScroll: 3,
+    },
+    xl: {
+      slidesToShow: 4,
+      slidesToScroll: 2,
+    },
+  });
+  const indicatorFunction = (index) => (
     <Circle
+      className="indicator"
       size="1.25rem"
       bg="nayaPedalsColor.lightGrey"
       marginRight={".5rem"}
@@ -33,11 +36,8 @@ export const Slideshow = ({ slides }) => {
       slidesToShow={slidePropValues?.slidesToShow}
       slidesToScroll={slidePropValues?.slidesToScroll}
     >
-      {slides.map((slide, index) => (
-        <Box padding={["1.25rem"]}>
-          <BikeCard {...slide} key={index} />
-        </Box>
-      ))}
+      {slides &&
+        slides.map((slide, index) => <BikeCard {...slide} key={index} />)}
     </Slide>
   );
 };

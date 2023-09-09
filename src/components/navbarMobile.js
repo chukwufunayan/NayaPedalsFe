@@ -36,7 +36,7 @@ export const NavbarMobile = ({ links }) => {
         placement="bottom-end"
         initialFocusRef={initRef}
       >
-        {({ isOpen, onClose }) => (
+        {({ isOpen }) => (
           <>
             <PopoverTrigger>
               <IconButton {...iconBtnProps} icon={renderIcon(isOpen)} />
