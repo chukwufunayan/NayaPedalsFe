@@ -1,10 +1,10 @@
-import { Shop } from "../../../pages/shop/shop";
+import { Index } from "../../../pages/shop";
 
 export default {
   title: "Pages/shop",
-  components: Shop,
+  components: Index,
 };
 
 export const primary = {
-  render: () => <Shop />,
+  render: () => <Index />,
 };

@@ -2,16 +2,17 @@ import { TagSlider, FilterMenu, FilterPanel } from "../../components/shop";
 import { BikeCard } from "../../components/bikeCard";
 import { Box, Divider, Flex } from "@chakra-ui/react";
 import { Grid, GridItem } from "@chakra-ui/react";
-import { ShopHook } from "../../stories/pages/shop/shopHook";
+import { ShopHook } from "./shopHook";
 
 export const Shop = () => {
   const {
     bikeCardValues,
+    bikeCards,
     filterMap,
     filterKeys,
     isMenuHidden,
     updateIsHidden,
-    map,
+    selectedFilter,
     selectedValues,
     dispatchSelectedValues,
     selectedValuesArray,
@@ -45,7 +46,6 @@ export const Shop = () => {
           <FilterPanel
             searchResultTotal={300}
             menuToggleFunction={updateIsHidden}
-            emptySelectedValues={map}
             isMenuHidden={isMenuHidden}
             dispatchSelectedValues={dispatchSelectedValues}
           />
@@ -57,12 +57,13 @@ export const Shop = () => {
             }}
             display={{ base: isMenuHidden ? "grid" : "none", lg: "grid" }}
           >
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((value, index) => (
-              <GridItem key={`bike-${value}`}>
-                {" "}
-                <BikeCard {...bikeCardValues} />
-              </GridItem>
-            ))}
+            {bikeCards?.length > 0 &&
+              bikeCards.map((value, index) => (
+                <GridItem key={`bike-${value}`}>
+                  {" "}
+                  <BikeCard {...value} />
+                </GridItem>
+              ))}
           </Grid>
         </Box>
       </Flex>

@@ -1,7 +1,7 @@
 import { Details } from "../../../pages/details";
 
 export default {
-  title: "Components/Details/BasicOverviewBoxComponent",
+  title: "Components/Index/BasicOverviewBoxComponent",
   components: Details,
 };
 

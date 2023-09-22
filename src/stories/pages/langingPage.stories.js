@@ -1,10 +1,10 @@
-import { LandingPage } from "../../pages/landing/landingPage";
+import { Index } from "../../pages/landing";
 
 export default {
   title: "Pages/landingPage",
-  components: LandingPage,
+  components: Index,
 };
 
 export const primary = {
-  render: () => <LandingPage />,
+  render: () => <Index />,
 };

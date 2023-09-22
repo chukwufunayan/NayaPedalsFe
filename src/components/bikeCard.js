@@ -28,16 +28,8 @@ const CustomTextComponent = ({ children }) => (
   <Text {...textProps}>{children}</Text>
 );
 
-export const BikeCard = ({
-  image,
-  year,
-  size,
-  driveTrain,
-  brand,
-  model,
-  type,
-  price,
-}) => {
+export const BikeCard = (bikeProp) => {
+  const { image, year, size, driveTrain, brand, model, type, price } = bikeProp;
   return (
     <Flex justifyContent={"center"}>
       <Box width={"350px"} padding={{ base: "1.25rem" }}>

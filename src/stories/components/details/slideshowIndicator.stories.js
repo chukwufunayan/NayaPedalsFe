@@ -2,7 +2,7 @@ import { SlideshowIndicator } from "../../../components/details";
 import BikeImage from "../../../resources/stumpjumper pro.webp";
 
 export default {
-  title: "Components/Details/SlideshowIndicator",
+  title: "Components/Index/SlideshowIndicator",
   components: SlideshowIndicator,
 };
 

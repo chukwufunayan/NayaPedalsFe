@@ -15,7 +15,7 @@ const textProps = {
   textAlign: "center",
 };
 
-export const LandingPage = () => {
+export const Landing = () => {
   const slideshowObj = SlideshowHook();
   return (
     <Box position={"relative"}>
@@ -45,7 +45,7 @@ export const LandingPage = () => {
         <Text {...textProps} marginTop={"1.5rem"} color={"black"}>
           Find a bike for yourself
         </Text>
-        <Slideshow slides={slideshowObj.slides} />
+        {<Slideshow slides={slideshowObj?.bikes} />}
         <Center>
           {" "}
           <BigButton label={"Explore the inventory"} />

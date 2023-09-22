@@ -1,3 +1,3 @@
-export * from "./details/details";
-export * from "./shop/shop";
-export * from "./landing/landingPage";
+export * from "./details";
+export * from "./shop";
+export * from "./landing";

@@ -2,7 +2,7 @@ import { Slide } from "react-slideshow-image";
 import { BikeCard } from "./bikeCard";
 import { SlideshowIndicator } from "./details";
 import "react-slideshow-image/dist/styles.css";
-import { Circle, useBreakpointValue, Image } from "@chakra-ui/react";
+import { Circle, useBreakpointValue } from "@chakra-ui/react";
 
 export const Slideshow = ({ slides }) => {
   console.log("inside slideshow: ");
@@ -21,7 +21,7 @@ export const Slideshow = ({ slides }) => {
       slidesToScroll: 2,
     },
   });
-  const indicatorFunction = (index) => (
+  const indicator = (index) => (
     <Circle
       className="indicator"
       size="1.25rem"
@@ -31,13 +31,18 @@ export const Slideshow = ({ slides }) => {
     />
   );
   return (
-    <Slide
-      indicators={indicatorFunction}
-      slidesToShow={slidePropValues?.slidesToShow}
-      slidesToScroll={slidePropValues?.slidesToScroll}
-    >
-      {slides &&
-        slides.map((slide, index) => <BikeCard {...slide} key={index} />)}
-    </Slide>
+    <>
+      {slides && (
+        <Slide
+          indicators={indicator}
+          slidesToShow={slidePropValues?.slidesToShow}
+          slidesToScroll={slidePropValues?.slidesToScroll}
+        >
+          {slides.map((slide, index) => (
+            <BikeCard {...slide} key={index} />
+          ))}
+        </Slide>
+      )}
+    </>
   );
 };

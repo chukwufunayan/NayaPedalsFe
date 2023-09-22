@@ -17,7 +17,7 @@ import {
   products,
 } from "../../components/GalleryWithHorizontalCarousel/_data";
 
-export const Details = () => {
+export const Detail = () => {
   return (
     <Box>
       <Flex
