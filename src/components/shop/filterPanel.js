@@ -12,9 +12,11 @@ export const FilterPanel = ({
       alignItems={"center"}
       justify={{ base: "space-between" }}
       padding={{
-        base: "1.5rem 1rem 0rem 1rem",
-        lg: "1.5rem 1.5rem 0rem 1.5rem",
+        base: ".5rem 1rem",
+        //base: "1.5rem 1rem 0rem 1rem",
+        //lg: "1.5rem 1.5rem 0rem 1.5rem",
       }}
+      columnGap={"1.5rem"}
     >
       <Box as={"span"} fontWeight={"semibold"}>
         {searchResultTotal} Results

@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import { theme } from "./utility/theme/theme";
 import { Landing, Shop, Detail } from "./pages";
 import { ChakraProvider } from "@chakra-ui/react";

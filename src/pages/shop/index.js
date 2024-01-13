@@ -1,27 +1,25 @@
 import { TagSlider, FilterMenu, FilterPanel } from "../../components/shop";
 import { BikeCard } from "../../components/bikeCard";
-import { Box, Divider, Flex } from "@chakra-ui/react";
-import { Grid, GridItem } from "@chakra-ui/react";
+import { Box, Divider, Flex, Grid, GridItem, Spinner } from "@chakra-ui/react";
 import { ShopHook } from "./shopHook";
 
 export const Shop = () => {
   const {
-    bikeCardValues,
     bikeCards,
     filterMap,
-    filterKeys,
+    filterKeysArray,
     isMenuHidden,
     updateIsHidden,
-    selectedFilter,
     selectedValues,
     dispatchSelectedValues,
     selectedValuesArray,
+    isLoading,
   } = ShopHook();
   return (
     <>
       <TagSlider
-        filterKeys={filterKeys}
-        selectedValues={selectedValuesArray}
+        filterKeysArray={filterKeysArray}
+        selectedValuesArray={selectedValuesArray}
         dispatchSelectedValues={dispatchSelectedValues}
       />
       <Divider orientation="horizontal" width={"100%"} borderWidth={"1px"} />
@@ -37,7 +35,7 @@ export const Shop = () => {
         >
           <FilterMenu
             filterMap={filterMap}
-            filterKeys={filterKeys}
+            filterKeysArray={filterKeysArray}
             selectedValues={selectedValues}
             dispatchSelectedValues={dispatchSelectedValues}
           />
@@ -49,22 +47,30 @@ export const Shop = () => {
             isMenuHidden={isMenuHidden}
             dispatchSelectedValues={dispatchSelectedValues}
           />
-          <Grid
-            templateColumns={{
-              base: "repeat(1, 1fr)",
-              md: "repeat(2, 1fr)",
-              xl: "repeat(3, 3fr)",
-            }}
-            display={{ base: isMenuHidden ? "grid" : "none", lg: "grid" }}
-          >
-            {bikeCards?.length > 0 &&
-              bikeCards.map((value, index) => (
-                <GridItem key={`bike-${value}`}>
-                  {" "}
-                  <BikeCard {...value} />
-                </GridItem>
-              ))}
-          </Grid>
+          {isLoading ? (
+            <Flex justifyContent={"center"} padding={"1rem"}>
+              {" "}
+              <Spinner />
+            </Flex>
+          ) : (
+            bikeCards.length > 0 && (
+              <Grid
+                templateColumns={{
+                  base: "repeat(1, 1fr)",
+                  md: "repeat(2, 1fr)",
+                  xl: "repeat(3, 3fr)",
+                }}
+                display={{ base: isMenuHidden ? "grid" : "none", lg: "grid" }}
+              >
+                {bikeCards?.map((value, index) => (
+                  <GridItem key={`bike-${value}`}>
+                    {" "}
+                    <BikeCard {...value} />
+                  </GridItem>
+                ))}
+              </Grid>
+            )
+          )}
         </Box>
       </Flex>
     </>

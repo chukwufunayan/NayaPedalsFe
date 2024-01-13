@@ -52,7 +52,7 @@ export const processCard = [
   {
     number: 2,
     description:
-      "Choose Preferred Payment method. Shipment trackling available.",
+      "Choose Preferred Payment method. Shipment tracking available.",
   },
   {
     number: 3,

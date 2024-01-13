@@ -9,10 +9,9 @@ import {
 } from "@chakra-ui/react";
 import { MinusIcon } from "@chakra-ui/icons";
 import { SelectSearch } from "./index";
-import { BigButton } from "../bigButton";
 
 export const FilterMenu = ({
-  filterKeys,
+  filterKeysArray,
   filterMap,
   dispatchSelectedValues,
   selectedValues,
@@ -20,15 +19,14 @@ export const FilterMenu = ({
   return (
     <Box>
       <Accordion allowToggle allowMultiple>
-        {filterKeys?.map((key, index) => (
+        {filterKeysArray?.map((key, index) => (
           <AccordionItem key={`${key}-${index}`}>
             {({ isExpanded }) => (
               <>
                 <AccordionButton>
-                  {" "}
                   <Box as="span" flex="1" textAlign="left">
                     {key}
-                  </Box>{" "}
+                  </Box>
                   {isExpanded ? (
                     <MinusIcon fontSize="12px" />
                   ) : (

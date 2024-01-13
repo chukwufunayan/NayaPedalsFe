@@ -1,17 +1,15 @@
 import { Tag, Flex, TagLabel, TagCloseButton, Box } from "@chakra-ui/react";
 
 export const TagSlider = ({
-  selectedValues,
-  filterKeys,
+  selectedValuesArray,
+  filterKeysArray,
   dispatchSelectedValues,
 }) => {
-  // console.log("selectedValueses", selectedValues);
   return (
     <Box overflowX={"scroll"} padding={"1rem .5rem"}>
       <Flex width={"max-content"} columnGap={"1rem"}>
-        {selectedValues &&
-          selectedValues.map((valueArray, filterKey) => {
-            // console.log(filterKey);
+        {selectedValuesArray &&
+          selectedValuesArray.map((valueArray, filterKey) => {
             return valueArray.map((tag, index) => (
               <Tag padding={".5rem"} key={`${filterKey}-${tag.label}`}>
                 <TagLabel>{tag.label}</TagLabel>
@@ -20,7 +18,7 @@ export const TagSlider = ({
                     dispatchSelectedValues({
                       type: "TAG_REMOVE_SELECTION",
                       payload: {
-                        key: filterKeys[filterKey],
+                        key: filterKeysArray[filterKey],
                         index: index,
                       },
                     })

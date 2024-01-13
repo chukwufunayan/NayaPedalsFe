@@ -1,19 +1,18 @@
-import bikeImg from "../../resources/stumpjumper pro.webp";
+// export const bikeCardValues = {
+//   image: bikeImg,
+//   year: 2023,
+//   size: "M",
+//   driveTrain: "Shimano X01 Di2",
+//   brand: "Specialized",
+//   model: "Sworks",
+//   type: "Enduro",
+//   price: 5000,
+// };
 
-export const bikeCardValues = {
-  image: bikeImg,
-  year: 2023,
-  size: "M",
-  driveTrain: "Shimano X01 Di2",
-  brand: "Specialized",
-  model: "Sworks",
-  type: "Enduro",
-  price: 5000,
-};
+export const filterKeysMap = { brand: "brand_id", type: "type" };
+export const filterKeysArray = Object.keys(filterKeysMap);
 
-export const filterKeys = ["brand", "type"];
-
-export const defaultSelectedFiltersMap = filterKeys.reduce(
+export const defaultSelectedFiltersMap = filterKeysArray.reduce(
   (accumulator, currentValue) => accumulator.set(currentValue, []),
   new Map()
 );
@@ -23,7 +22,7 @@ export const removeTag = (currentState, key, index) => {
 };
 
 export const selectReducer = (state, action) => {
-  const stateMap = new Map(Array.from(state));
+  const stateMap = new Map(JSON.parse(JSON.stringify(Array.from(state))));
   const { key, data, index } = action.payload;
   if (action.type === "CLEAR_SELECTIONS") return defaultSelectedFiltersMap;
   else if (action.type === "SELECTION_SEARCH_UPDATE") stateMap.set(key, data);
@@ -40,14 +39,18 @@ export const setFilter = (setFilterMap) => (filterResponses) => {
     } = responseObject;
 
     const filterValues = responseData.reduce((accumulator, currentObject) => {
+      const value =
+        filterKeysArray[index] === "brand"
+          ? currentObject.id
+          : currentObject.name;
       accumulator.push({
         label: currentObject.name,
-        value: currentObject.name,
+        value,
       });
       return accumulator;
     }, []);
 
-    map.set(filterKeys[index], filterValues);
+    map.set(filterKeysArray[index], filterValues);
   });
   setFilterMap(map);
 };
@@ -57,19 +60,19 @@ export const setFilter = (setFilterMap) => (filterResponses) => {
  * { year: [ 2022 ], brand_id: [ 10, 11, 12, 13 ] }
  */
 
-export const flattenMap = (selectedValues) => {
-  const filterObject = filterKeys.reduce((accumulator, currentKey) => {
-    const selectedFilters = selectedValues.get(currentKey);
+export const flattenMap = (filterCategories) => {
+  return filterKeysArray.reduce((accumulator, currentKey) => {
+    const selectedFilters = filterCategories.get(currentKey);
 
     if (selectedFilters.length > 0) {
-      const selections = selectedFilters.map((selection) => {
-        return selection.label;
-      });
-      accumulator[currentKey] = selections;
+      accumulator[filterKeysMap[currentKey]] = selectedFilters.map(
+        (selection) => {
+          return selection.value;
+        }
+      );
       return accumulator;
     }
 
     return accumulator;
   }, {});
-  return filterObject;
 };
